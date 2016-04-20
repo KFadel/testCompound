@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>compound</display-name>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- webservices RestEasy  -->
+  <context-param>	
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/resteasyNew</param-value>
+    </context-param>
+ 
+ 	   <!-- Auto scan REST service -->
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+ 
+    <!-- RestEasy Servlet -->
+    <servlet>
+        <servlet-name>jersey-serlvet</servlet-name>
+         <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+         <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.ntg.resteasyWS.CountryApplication</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup> 
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <url-pattern>/resteasyNew/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+  
+  
+</web-app>
